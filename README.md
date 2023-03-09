@@ -11,7 +11,6 @@
 
   연산자
     증감연산자 a++(postifix방식), ++a(prefix방식))
-
     let a = 1, let b = '1'
     console.log(a == b) => true
     console.log(a === b) => false
