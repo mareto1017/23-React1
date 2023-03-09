@@ -6,8 +6,8 @@
 3. JavaScript 
 자료형 var let const
 
-var 중복 선언 가능, let 중복 선언 불가능, const 중복 선언 불가능
-const는 상수
+var 중복 선언 가능, let 중복 선언 불가능, const 중복 선언 불가능,
+const는 상수,
 주로 let, const만 사용
 
 연산자
