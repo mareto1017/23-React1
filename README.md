@@ -1,70 +1,49 @@
-# Getting Started with Create React App
+# 23-React1
+# 박상진
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## 3/23 4주차
+--------------------------
 
-## Available Scripts
 
-In the project directory, you can run:
 
-### `npm start`
+## 3/16 3주차
+--------------------------
+### 1. node.js 설치
+### 2. 리액트 소개
+> 리액트의 정의 : 사용자 인터페이스를 만들기 위한 자바스크립트 라이브러리  
+> 리액트 개념 정리
+>> 복잡한 사이트를 쉽고 빠르게 만들고, 관리하기 위해 만들어진 것이 바로 리액트  
+> 리액트의 장점  
+>> 1. 빠른 업데이트와 렌더링 속도  
+>> 2. 컴포넌트 기반 구조
+>> 3. 재사용성
+>> 4. 든든한 지원군 : 메타에서 오픈소스 프로젝트로 관리하고 있어 계속 발전중
+>> 5. 활발한 지식 공유 & 커뮤니티
+>> 6. 모바일 앱 개발가능
+>리액트의 단점
+>> 1. 방대한 학습량
+>> 2. 높은 상태 관리 복잡도
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## 3/9 2주차
+--------------------------
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+1. github repository 생성, repository에 push하는 방법
+2. Html, css기본 설명
+3. JavaScript   
+  자료형 var let const
+  
+    var 중복 선언 가능, let 중복 선언 불가능, const 중복 선언 불가능
+    
+    const는 상수
+    
+    주로 let, const만 사용
 
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+  연산자
+  
+    증감연산자 a++(postifix방식), ++a(prefix방식)
+    
+    let a = 1, let b = '1'
+    
+    console.log(a == b) => true
+    
+    console.log(a === b) => false
