@@ -4,32 +4,32 @@
 ## 4/27 9주차
 --------------------------
 ### 이벤트 처리하기
-> DOM에서 클릭 이벤트를 처리하는 예제 코드
+> DOM에서 클릭 이벤트를 처리하는 예제 코드  
 ```jsx
     <button onClick="activate()">
         Activate
     </button>
 ```
-> React에서 클릭이벤트 처리하는 예제 코드
+> React에서 클릭이벤트 처리하는 예제 코드  
 ```jsx
    <button onClick={activate}>
        Activate
    </button>
 ```
 
-> 둘의 차이점은 1. 이벤트 이름이 onClick에서 onClick으로 변경
-> 2. 전달하려는 함수는 함수열에서 함수 그대로 전달
-> 이벤트가 발생 했을 때 해당 이벤트를 처리하는 함수를 "이벤트 핸들러" 라고 함
-> 이벤트가 발생하는 것을 계속 듣고 있다는 의미로 "이벤트 리스너" 라고도 함
+> 둘의 차이점은 1. 이벤트 이름이 onClick에서 onClick으로 변경  
+> 2. 전달하려는 함수는 함수열에서 함수 그대로 전달  
+> 이벤트가 발생 했을 때 해당 이벤트를 처리하는 함수를 "이벤트 핸들러" 라고 함  
+> 이벤트가 발생하는 것을 계속 듣고 있다는 의미로 "이벤트 리스너" 라고도 함  
 
 
 ### 이벤트 핸들러 추가 방법
 > 버튼을 클릭하면 handleCick() 함수 호출하도록 되어 있음   
-> bind를 사용하지 않으면 this.handleCick은 글로벌 스코프에서 호출되어, undefined로 사용 못 함   
-> bind를 사용하지 않으려면 화살표함수를 사용해도 됨
-> 하지만 클래스 컴포넌트는 이제 거의 사용하지 않음
-> 함수형에서 이벤트 핸들러를 정화하는 방법은 2가지
-> 방법 1. 함수 안에 함수로 정의
+> bind를 사용하지 않으면 this.handleCick은 글로벌 스코프에서 호출되어, undefined로 사용 못 함     
+> bind를 사용하지 않으려면 화살표함수를 사용해도 됨  
+> 하지만 클래스 컴포넌트는 이제 거의 사용하지 않음  
+> 함수형에서 이벤트 핸들러를 정화하는 방법은 2가지  
+> 방법 1. 함수 안에 함수로 정의  
 ```jsx
     function handleCick(){
         setIsToggleOn((isToggleOn) => !isToggleOn);
@@ -39,24 +39,24 @@
         setIsToggleOn((isToggleOn) => !isToggleOn);
     }
 ```
-> 함수형에서는 tHis를 사용하지 않고 onClick에서 바로 HandleClick을 넘김
+> 함수형에서는 tHis를 사용하지 않고 onClick에서 바로 HandleClick을 넘김  
 
 
 ### Arguments 전달하기
-> 함수를 정의할 때는 파라미터(Parameter) 혹은 매개변수
-> 함수를 사용할 때는 아귀먼트(Argument) 혹은 인자
-> 이벤트 핸들러에 매개변수를 전달해야 하는 경우도 많음
-> <button onClick={(event) => this.deleteItem(id, event)}> 삭제하기</button>
-> <button onClick={this.deleteItem.bind(this, id)}> 삭제하기</button>
-> 위 코드는 모두 동일한 역할을 하지만 하나는 화살표 함수를 다른 하나는 bind를 이용
-> event라는 매개변수는 리액트의 이벤트 객체를 의미
->두 방법 모두 첫 번째 매개변수는 id이고 두 번째 매개변수로 event 전달
->첫 번째코드는 명시적으로 event를 매개변수로 넣어줌
->두 번째코드는 id 이후 두번째 매개변수로 event가 자동 전달
+> 함수를 정의할 때는 파라미터(Parameter) 혹은 매개변수  
+> 함수를 사용할 때는 아귀먼트(Argument) 혹은 인자  
+> 이벤트 핸들러에 매개변수를 전달해야 하는 경우도 많음  
+> <button onClick={(event) => this.deleteItem(id, event)}> 삭제하기</button>  
+> <button onClick={this.deleteItem.bind(this, id)}> 삭제하기</button>  
+> 위 코드는 모두 동일한 역할을 하지만 하나는 화살표 함수를 다른 하나는 bind를 이용  
+> event라는 매개변수는 리액트의 이벤트 객체를 의미  
+>두 방법 모두 첫 번째 매개변수는 id이고 두 번째 매개변수로 event 전달  
+>첫 번째코드는 명시적으로 event를 매개변수로 넣어줌  
+>두 번째코드는 id 이후 두번째 매개변수로 event가 자동 전달  
 
 
 ### 조건부 렌더링
-> 조건 : 조건문의 조건
+> 조건 : 조건문의 조건  
 ``` jsx
 function Greeting(props){
   const isLoggedIn = props.isLoggedIn;
@@ -66,10 +66,10 @@ function Greeting(props){
   return <GuestGreeting />;
 }
 ```
-> props로 전달 받은 isLoggedln이 true이면 <UserGreeting />을, false면 <GuestGreeting />을 return 이와 같은 렌더링을 조건부 렌더링이라 한다.
+> props로 전달 받은 isLoggedln이 true이면 <UserGreeting />을, false면 <GuestGreeting />을 return 이와 같은 렌더링을 조건부 렌더링이라 한다.  
 
 ### 엘리먼트 변수
-- 엘리먼트 변수 :  렌더링해야 될 컴포넌트를 변수처럼 사용하는 방법
+- 엘리먼트 변수 :  렌더링해야 될 컴포넌트를 변수처럼 사용하는 방법  
 ```jsx
 function LoginControl(porps){
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -100,15 +100,15 @@ function LoginControl(porps){
 ```
 
 ### 인라인 조건
-> 필요한 곳에 조건문을 직접 넣어 사용하는 방버
-> 1. 인라인 if
->> if문을 사직접 사용하지 않고, 동일한 효과를 내기 위해 && 논리 연산자를 사용
->> &&는 and연산자로 모든 조건이 참일때만 참이 된다
->> 단축평가 : 첫 조건이 거짓이면 두번째 조건은 판단할 필요가 없다
+> 필요한 곳에 조건문을 직접 넣어 사용하는 방법  
+> 1. 인라인 if  
+>> if문을 사직접 사용하지 않고, 동일한 효과를 내기 위해 && 논리 연산자를 사용  
+>> &&는 and연산자로 모든 조건이 참일때만 참이 된다  
+>> 단축평가 : 첫 조건이 거짓이면 두번째 조건은 판단할 필요가 없다  
 
-> 2. 인라인 if-else
->> 삼항 연산자를 사용한다. [ 조건문 ? 참일 경우 : 거짓일 경우 ]
->> 문자열이나 엘리먼트를 넣어서 사용할 수 있다.
+> 2. 인라인 if-else  
+>> 삼항 연산자를 사용한다. [ 조건문 ? 참일 경우 : 거짓일 경우 ]  
+>> 문자열이나 엘리먼트를 넣어서 사용할 수 있다.  
 ``` jsx
 function UserStatus(props){
   return(
@@ -144,7 +144,7 @@ function LoginControl(props){
 ```
 
 ### 컴포넌트 렌더링 막기
-> 컴포넌트 렌더링하고 싶지 않을 때에는 null을 리턴
+> 컴포넌트 렌더링하고 싶지 않을 때에는 null을 리턴  
 ``` jsx
 function MainPage(props) {
   const [showWarning, setShowWarning] = useState(false);
@@ -165,7 +165,6 @@ function MainPage(props) {
 ```
 
 ### 리스트와 키
-
 > 리스트를 위해 사용하는 자료구조가 바로 배열   
 > 배열은 자바스크립트의 변수나 객체를 하나의 변수로 묶어놓은 것   
 > 아래는 자바스크립트의 배열을 보여주는 것   
