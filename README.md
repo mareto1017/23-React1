@@ -1,6 +1,307 @@
 # 23-React1
 # 박상진
 
+## 5/04 10주차
+---------------------------
+### 리스트와 키란 무엇인가?
+> 리스트는 자바스크립트의 변수나 객체를 하나의 변수로 묶어 놓은 배열과 같은 것  
+> 키는 각 객체나 아이템을 구분할 수 있는 고유한 값을 의미  
+
+###
+
+
+### 기본적인 리스트 컴포넌트
+> 이 컴포넌트는 props로 받은 숫자를 numbers로 받아 리스트로 렌더링해 줍니다.  
+```jsx
+function NumberList(props) {
+  const { numbers } = props;
+
+  const listItems = numbers.map((number) => 
+    <li>{number}<li>
+  );
+
+  return (
+      <ul>{listItems}</ul>
+  );
+}
+```
+```js
+const numbers = [1,2, 3, 4, 5];
+ReactDom.rendr(
+  <NumberList numbers={numbers} />
+  document.getElementById('root');
+);
+```
+
+
+### 리스트와 키에 대해 알아보기
+> 리스트에서 키는 "리스트에서 아이템을 구별하기 위한 고유한 문자열"  
+> 이 키는 리스트에서 어떤 아이템이 변경, 추가 또는 제거되었는지 구분하기 위해 사용  
+> 키는 같은 리스트에 있는 엘리먼트 사이에서만 고유한 값이면 됨  
+
+
+### 폼이란 무엇인가?
+> 폼은 일반적으로 사용자로부터 입력을 받기위한 양식에서 많이 사용됨  
+```html
+<form>
+  <label>
+      이름 :
+      <input type="text" name="name"/>
+  </label>
+  <button type="submit">제출</button>
+</form>
+```
+
+### 제어 컴포넌트
+> 제어 컴포넌트는 사용자가 입력한 값에 접근하고 제어할 수 있도록 해주는 컴포넌트  
+> 다음 코드는 사용자의 이름을 입력받는 html폼을 리액트 제어 컴포넌트로 만든것  
+```jsx
+function NameForm(props) {
+  const [value, setValue] = useState('');
+
+  const handleChange = (event) => {
+    setValue(event.target.value);
+  }
+
+  const handleSubmit = (event) => {
+    alert('입력한 이름: ' + value);
+    event.preventDefult();
+  }
+
+  return (
+    <form>
+      <label onSubmit={handleSubmit}>
+          이름 :
+          <input type="text" value={value} onChange={handleChange}/>
+      </label>
+      <button type="submit">제출</button>
+    </form>
+  )
+}
+```
+
+### textarea태그
+> html에서는 <textarea>의 children으로 텍스트가 들어가는 형태  
+```html
+<textarea>
+  안녕하세요, 여기에 이렇게 텍스트가 들어갑니다
+</textarea>
+```
+> 리액트에서는 state를 통해 태그의 value라는 attribute를 변경하여 텍스트를 표시  
+```jsx
+function RequestForm(props) {
+  const [value, setValue] = useState('요청사항을 입력하세요');
+
+  const handleChange = (event) => {
+    setValue(event.target.value);
+  }
+
+  const handleSubmit = (event) => {
+    alert('입력한 요청사항: ' + value);
+    event.preventDefult();
+  }
+
+  return (
+    <form>
+      <label onSubmit={handleSubmit}>
+          요청사항 :
+          <textarea value={value} onChange={handleChange}/>
+      </label>
+      <button type="submit">제출</button>
+    </form>
+  )
+}
+```
+
+### select 태그
+> select 태그도 textare와 동일합니다.
+
+### File input 태그
+> File input 태그는 그 값이 읽기 전용이기 때문에 비제어 컴포넌트가 됨  
+```jsx
+<input tupe="file" />
+```
+
+
+
+
+## 4/27 9주차
+--------------------------
+### 이벤트 처리하기
+> DOM에서 클릭 이벤트를 처리하는 예제 코드  
+```jsx
+    <button onClick="activate()">
+        Activate
+    </button>
+```
+> React에서 클릭이벤트 처리하는 예제 코드  
+```jsx
+   <button onClick={activate}>
+       Activate
+   </button>
+```
+
+> 둘의 차이점은 1. 이벤트 이름이 onClick에서 onClick으로 변경  
+> 2. 전달하려는 함수는 함수열에서 함수 그대로 전달  
+> 이벤트가 발생 했을 때 해당 이벤트를 처리하는 함수를 "이벤트 핸들러" 라고 함  
+> 이벤트가 발생하는 것을 계속 듣고 있다는 의미로 "이벤트 리스너" 라고도 함  
+
+
+### 이벤트 핸들러 추가 방법
+> 버튼을 클릭하면 handleCick() 함수 호출하도록 되어 있음   
+> bind를 사용하지 않으면 this.handleCick은 글로벌 스코프에서 호출되어, undefined로 사용 못 함     
+> bind를 사용하지 않으려면 화살표함수를 사용해도 됨  
+> 하지만 클래스 컴포넌트는 이제 거의 사용하지 않음  
+> 함수형에서 이벤트 핸들러를 정화하는 방법은 2가지  
+> 방법 1. 함수 안에 함수로 정의  
+```jsx
+    function handleCick(){
+        setIsToggleOn((isToggleOn) => !isToggleOn);
+    }
+방법 2. arrow function을 사용하여 정의
+    const handleClick = () => {
+        setIsToggleOn((isToggleOn) => !isToggleOn);
+    }
+```
+> 함수형에서는 tHis를 사용하지 않고 onClick에서 바로 HandleClick을 넘김  
+
+
+### Arguments 전달하기
+> 함수를 정의할 때는 파라미터(Parameter) 혹은 매개변수  
+> 함수를 사용할 때는 아귀먼트(Argument) 혹은 인자  
+> 이벤트 핸들러에 매개변수를 전달해야 하는 경우도 많음  
+> <button onClick={(event) => this.deleteItem(id, event)}> 삭제하기</button>  
+> <button onClick={this.deleteItem.bind(this, id)}> 삭제하기</button>  
+> 위 코드는 모두 동일한 역할을 하지만 하나는 화살표 함수를 다른 하나는 bind를 이용  
+> event라는 매개변수는 리액트의 이벤트 객체를 의미  
+>두 방법 모두 첫 번째 매개변수는 id이고 두 번째 매개변수로 event 전달  
+>첫 번째코드는 명시적으로 event를 매개변수로 넣어줌  
+>두 번째코드는 id 이후 두번째 매개변수로 event가 자동 전달  
+
+
+### 조건부 렌더링
+> 조건 : 조건문의 조건  
+``` jsx
+function Greeting(props){
+  const isLoggedIn = props.isLoggedIn;
+  if(isLoggedIn){
+    return <UserGreeting />;
+  }
+  return <GuestGreeting />;
+}
+```
+> props로 전달 받은 isLoggedln이 true이면 <UserGreeting />을, false면 <GuestGreeting />을 return 이와 같은 렌더링을 조건부 렌더링이라 한다.  
+
+### 엘리먼트 변수
+- 엘리먼트 변수 :  렌더링해야 될 컴포넌트를 변수처럼 사용하는 방법  
+```jsx
+function LoginControl(porps){
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+  const handleLoginClick=() => {
+    setIsLoggedIn(true);
+  }
+
+  const handleLogOutClick=() => {
+    setIsLoggedIn(false);
+  }
+
+  let button;
+  if(isLoggedIn) {
+    button = <LogoutButton onClick={handleLogoutClick} />;
+  } else {
+    button = <LoginButton onClick={handleLoginClick} />;
+  }
+
+  return (
+    <div>
+      <Greeting isLoggedIn = {isLoggedIn} />
+      {button}
+    </div>
+  );
+}
+
+```
+
+### 인라인 조건
+> 필요한 곳에 조건문을 직접 넣어 사용하는 방법  
+> 1. 인라인 if  
+>> if문을 사직접 사용하지 않고, 동일한 효과를 내기 위해 && 논리 연산자를 사용  
+>> &&는 and연산자로 모든 조건이 참일때만 참이 된다  
+>> 단축평가 : 첫 조건이 거짓이면 두번째 조건은 판단할 필요가 없다  
+
+> 2. 인라인 if-else  
+>> 삼항 연산자를 사용한다. [ 조건문 ? 참일 경우 : 거짓일 경우 ]  
+>> 문자열이나 엘리먼트를 넣어서 사용할 수 있다.  
+``` jsx
+function UserStatus(props){
+  return(
+    <div>
+      이 사용자는 현재 <b>{props.isLoggedIn ? '로그인' : '로그인하지 않은'}<b> 상태입니다.
+    </div>
+  )
+}
+```
+
+```jsx
+function LoginControl(props){
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+  const handleLoginClick() => {
+    setIsLoggedIn(true);
+  }
+
+  const handleLogoutClick = () => {
+    setIsLoggedIn(false);
+  }
+  
+  return (
+    <div>
+      <Greeting isLoggedIn = {isLoggedIn} />
+      {isLoggedIn 
+      ? <LogoutButton onClick = {handleLogoutClick} /> 
+      : <LoginButton onClick = {handleLoginClick} />}
+    </div>
+  )
+}
+
+```
+
+### 컴포넌트 렌더링 막기
+> 컴포넌트 렌더링하고 싶지 않을 때에는 null을 리턴  
+``` jsx
+function MainPage(props) {
+  const [showWarning, setShowWarning] = useState(false);
+
+  const handledToggleClick = () => {
+    setShowWarning(prevShowWarning => !prevShowWarning); 
+  }
+
+  return (
+    <div>
+      <WarningBanner warning = {showWarning} />
+      <button onClick={handleToggleClick}>
+        {showWarning ? '감추기' : '보이기'}
+      </button>
+    </div>
+  )
+}
+```
+
+### 리스트와 키
+> 리스트를 위해 사용하는 자료구조가 바로 배열   
+> 배열은 자바스크립트의 변수나 객체를 하나의 변수로 묶어놓은 것   
+> 아래는 자바스크립트의 배열을 보여주는 것   
+```jsx
+const number = [1,2,3,4,5];
+```
+> 키는 모두 각자 고유하다는 것
+> 키는 각 객체나 아이템을 구분할 수 있는 고유한 값을 의미
+
+
+
+
+
 ## 4/13 7주차
 --------------------------
 ### 훅이란?
