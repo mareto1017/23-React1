@@ -6,8 +6,23 @@
 ### 리스트와 키란 무엇인가?
 > 리스트는 자바스크립트의 변수나 객체를 하나의 변수로 묶어 놓은 배열과 같은 것  
 > 키는 각 객체나 아이템을 구분할 수 있는 고유한 값을 의미  
+> 리액트에서 배열과 키를 사용하며 반복되는 다수의 엘리먼트를 쉽게 렌더링 할 수 있음  
+> 여러개의 컴포넌트를 렌더링할 때는 map() 함수를 이용함  
 
-###
+
+### map() 함수
+> map()을 이용하여 하나씩 추출하여, 2를 곱한 후 doubled라는 배열에 다시 넣는 코드  
+```jsx
+const doubled = numbers.map((number) => number * 2);
+```
+> 리액트에서 사용하는 경우  
+```jsx
+const numbers = [1, 2, 3, 4, 5];
+const listItems = numbers.map((number) => 
+    <li>{number}</li>
+);
+```
+> 위 코드는 numbers의 요소에 2를 곱하는 대신 li 태그를 결합해서 리턴하고 리턴된 listItems는 ul태그와 결합하여 렌더링 됨 
 
 
 ### 기본적인 리스트 컴포넌트
@@ -122,7 +137,58 @@ function RequestForm(props) {
 <input tupe="file" />
 ```
 
+### 여러 개의 입력을 다룰 때
+> 여러 개의 입력을 다룰때는 여러 개의 state를 선언하여 각각의 입력에 대해 사용하면 됨  
+```jsx
+function Reservation(props) {
+    const [haveBreakfast, setHaveBreakfast] = useState('true');
+    const [numberOfGuest, setNumberOfGuest] = useState(2);
 
+    const handleChange = (event) => {
+        alert(`아침식사 여부: ${haveBreakfast}, 방문객 수: ${numberOfGuest}`);
+        event.preventDefault();
+}
+
+    return (
+        <form onSubmit={handleSubmit}>
+            <label>
+                아침식사 여부:
+                <input
+                    type="checkbox"
+                    checked={haveBreakfast}
+                    onChange={(event) => {
+                        setHaveBreakfast(event.target.changed);
+                    }} />
+            </label>
+            <br />
+            <label>
+                방문객 수:
+                <input
+                    type="number"
+                    value={numberOfGuest}
+                    onChange={(event) => {
+                        setNumberOfGuest(event.target.value);
+                    }} />
+            </label>
+            <button type="submit">제출</button>
+        </form>
+    );
+}
+```
+
+### Input Null Value
+> 제어 컴포넌트에 value prop을 정해진 값으로 넣으면 코드를 수정하지 않는 한 입력값을 바꿀 수 없음  
+> 만약 value prop은 넣되 자유롭게 입력할 수 있게 만들고 싶다면 값이 undefined 또는 null을 넣어주면 됨  
+```jsx
+ReactDom.render(<input value="hi" />, rootNode);
+
+setTimeout(function() {
+    ReactDOM.render(<input value={null} />, rootNode);
+}, 1000);
+```
+
+## Shared State 
+> 공유된 state이며 어떤 컴포넌트의 state에 있는 데이터를 여러 개의 하위 컴포넌트에서 공통적으로 사용하는 경우를 말함  
 
 
 ## 4/27 9주차
