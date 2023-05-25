@@ -13,12 +13,12 @@ import AttendaceBook from './chapter_10/AttendanceBook';
 import SingUp from './chapter_11/SingUp';
 import Calculator from './chapter_12/Caculator';
 import ProfileCard from './chapter_13/ProfileCard';
-
+import DarkOrLight from './chapter_14/DarkOrLight';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <ProfileCard/>
+    <DarkOrLight/>
   </React.StrictMode>
 );
 
